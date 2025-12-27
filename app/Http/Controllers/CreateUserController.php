@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\UserCreateException;
 use App\Http\Requests\CreateUserRequest;
 use App\Entities\ResponseJsend;
+use App\DTO\CreateUserDTO;
 use Illuminate\Http\JsonResponse;
 use App\Usecases\CreateUserUsecaseInterface;
 
@@ -19,9 +20,9 @@ class CreateUserController extends Controller
     public function __invoke(CreateUserRequest $request): JsonResponse
     {
         try {
-            $data = $request->validated();
+            $dto = CreateUserDTO::fromArray($request->validated());
 
-            $result = $this->createUserUsecase->__invoke($data);
+            $result = $this->createUserUsecase->__invoke($dto);
 
             $response = new ResponseJsend($result->toArray());
 
