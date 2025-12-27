@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -24,6 +23,7 @@ class User extends Authenticatable
         'first_login',
         'is_active',
         'last_login',
+        'blocked_until',
     ];
 
     /**
@@ -40,7 +40,7 @@ class User extends Authenticatable
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
-     */
+     */  
     protected function casts(): array
     {
         return [
@@ -50,6 +50,7 @@ class User extends Authenticatable
             'first_login' => 'boolean',
             'is_active' => 'boolean',
             'last_login' => 'datetime',
+            'blocked_until' => 'datetime',
             'password' => 'hashed',
         ];
     }

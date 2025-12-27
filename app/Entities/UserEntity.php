@@ -15,10 +15,11 @@ class UserEntity
     protected bool $firstLogin = false;
     protected bool $isActive = true;
     protected ?DateTimeInterface $lastLogin = null;
+    protected ?DateTimeInterface $blockedUntil = null;
     protected ?DateTimeInterface $createdAt = null;
     protected ?DateTimeInterface $updatedAt = null;
 
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
         return $this;
@@ -27,7 +28,7 @@ class UserEntity
     {
         return $this->id;
     }
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
         return $this;
@@ -36,7 +37,7 @@ class UserEntity
     {
         return $this->name;
     }
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
         return $this;
@@ -82,6 +83,15 @@ class UserEntity
     {
         return $this->lastLogin;
     }
+    public function setBlockedUntil(?DateTimeInterface $blockedUntil): self
+    {
+        $this->blockedUntil = $blockedUntil;
+        return $this;
+    }
+    public function getBlockedUntil(): ?DateTimeInterface
+    {
+        return $this->blockedUntil;
+    }
     public function setCreatedAt(?DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -100,7 +110,7 @@ class UserEntity
     {
         return $this->updatedAt;
     }
-    
+
     public static function fromModel(User $model): self
     {
         $entity = new self();
@@ -111,6 +121,7 @@ class UserEntity
         $entity->setFirstLogin((bool) ($model->first_login ?? false));
         $entity->setIsActive((bool) ($model->is_active ?? true));
         $entity->setLastLogin($model->last_login);
+        $entity->setBlockedUntil($model->blocked_until);
         $entity->setCreatedAt($model->created_at);
         $entity->setUpdatedAt($model->updated_at);
         return $entity;
@@ -125,6 +136,7 @@ class UserEntity
             'first_login' => $this->getFirstLogin(),
             'is_active'   => $this->getIsActive(),
             'last_login'  => $this->getLastLogin()?->format('Y-m-d H:i:s'),
+            'blocked_until' => $this->getBlockedUntil()?->format('Y-m-d H:i:s'),
             'created_at'  => $this->getCreatedAt()?->format('Y-m-d H:i:s'),
             'updated_at'  => $this->getUpdatedAt()?->format('Y-m-d H:i:s'),
         ];

@@ -66,6 +66,42 @@ docker-compose exec app php artisan migrate
 
 The API will be available after the containers are up.
 
+## 🌱 Database Seeders (Test Users)
+
+To speed up API testing and avoid manual user registration, the project includes a user seeder.
+
+### Available Seeder
+
+- `database/seeders/UsersTableSeeder.php`
+
+This seeder creates multiple users with predefined credentials and status fields (`first_login`, `is_active`, `last_login`, etc.).
+
+### Run the Seeder (Docker)
+
+```bash
+docker compose exec app php artisan db:seed --class=UsersTableSeeder
+```
+
+This will populate the database with test users, allowing immediate authentication and endpoint testing.
+
+## 🧪 API Tests & Request Collections
+
+API request collections are stored separately from the application code.
+
+### Location
+
+```
+api-collection/
+└── laravel-user-management-api/
+```
+
+This folder contains API request definitions used to test and explore the available endpoints.
+Each collection is organized by feature (authentication, users, health checks, etc.) and includes its own `README.md` with usage instructions.
+
+⚠️ This folder contains test requests only. No secrets or credentials are stored.
+
+The collections are tool-agnostic and can be used with clients such as Bruno, Insomnia, or Postman.
+
 ## Notes
 
 - This is an API-only project. There is no frontend UI.

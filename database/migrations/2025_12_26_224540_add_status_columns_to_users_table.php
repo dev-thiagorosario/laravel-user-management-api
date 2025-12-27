@@ -9,16 +9,19 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('first_login')
-                ->default(false)
+                ->default(true)
                 ->after('email_verified_at');
 
             $table->boolean('is_active')
                 ->default(true)
                 ->after('first_login');
 
-            $table->timestamp('last_login')
+            $table->dateTime('last_login')
                 ->nullable()
                 ->after('is_active');
+
+            $table->dateTime('blocked_until')
+                ->nullable();
         });
     }
 
@@ -29,6 +32,7 @@ return new class extends Migration {
                 'first_login',
                 'is_active',
                 'last_login',
+                'blocked_until',
             ]);
         });
     }
