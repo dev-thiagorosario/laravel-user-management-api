@@ -1,0 +1,30 @@
+meta {
+  name: Create User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/register
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Thiago Silva",
+    "email": "thiago.silva@example.com",
+    "password": "SenhaForte123",
+    "password_confirmation": "SenhaForte123"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

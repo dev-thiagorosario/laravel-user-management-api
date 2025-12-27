@@ -30,5 +30,6 @@ if [ -n "$DB_HOST" ]; then
 fi
 
 chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
 exec "$@"
