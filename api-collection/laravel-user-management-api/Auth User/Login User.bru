@@ -1,0 +1,28 @@
+meta {
+  name: Login User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "marina.silva@example.com",
+    "password": "SenhaForte123"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

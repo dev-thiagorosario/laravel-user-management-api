@@ -12,7 +12,7 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|regex:/^[\\p{L} ]+$/u',
+            'name' => 'required|string|min:3|max:255|regex:/^[\\p{L} ]+$/u',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => [
                 'required',
@@ -35,6 +35,7 @@ class CreateUserRequest extends FormRequest
             'name.string' => 'O nome deve ser um texto valido',
             'name.regex' => 'O nome deve conter apenas letras (com ou sem acentos) e espaços',
             'name.max' => 'O nome deve ter no maximo 255 caracteres',
+            'name.min' => 'O nome deve ter no minimo 3 caracteres',
 
 
             'email.required' => 'O e-mail é obrigatório.',
