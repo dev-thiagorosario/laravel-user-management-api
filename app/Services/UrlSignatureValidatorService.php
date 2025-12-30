@@ -6,7 +6,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-class LaravelUrlSignatureValidatorService implements LaravelUrlSignatureValidatorServiceInterface
+class UrlSignatureValidatorService implements UrlSignatureValidatorServiceInterface
 {
     public function isValidSignedUrl(string $signedUrl): bool
     {

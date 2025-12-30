@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-final class SendEmailConfirmationInputDTO
+class SendEmailConfirmationInputDTO
 {
     public function __construct(
         public readonly int $userId,

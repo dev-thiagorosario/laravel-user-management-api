@@ -8,5 +8,6 @@ use App\Models\User;
 
 interface FindUserRepositoryInterface
 {
+    public function findById(int $userId): User;
     public function findByEmail(string $email): User;
 }

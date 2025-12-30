@@ -9,6 +9,19 @@ use App\Models\User;
 
 class FindUserRepository implements FindUserRepositoryInterface
 {
+    public function findById(int $userId): User
+    {
+        $user = User::query()
+            ->whereKey($userId)
+            ->first();
+
+        if (!$user) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
     public function findByEmail(string $email): User
     {
         $user = User::query()
