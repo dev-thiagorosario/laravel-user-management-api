@@ -1,0 +1,32 @@
+meta {
+  name: Logout User
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/logout
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: 5|MzdShvPk4wDI6I0xzgRevra9DpUHbY7XFonFDXosfa6fa193
+}
+
+body:json {
+  {
+    "email": "marina.silva@example.com",
+    "password": "SenhaForte123"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
