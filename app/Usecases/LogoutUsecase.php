@@ -14,7 +14,7 @@ class LogoutUsecase implements LogoutUsecaseInterface
     ){}
     public function __invoke(): void
     {
-        $user = Auth::user();
+        $user = Auth::user(); 
         $userId = $user?->getAuthIdentifier();
 
         if ($user !== null && method_exists($user, 'currentAccessToken')) {
