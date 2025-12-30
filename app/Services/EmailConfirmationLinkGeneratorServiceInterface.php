@@ -6,7 +6,7 @@ namespace App\Services;
 
 use Carbon\CarbonInterface;
 
-interface LinkGeneratorServiceInterface
+interface EmailConfirmationLinkGeneratorServiceInterface
 {
     public function generate(int $userId, string $email, string $plainToken, CarbonInterface $expiration): string;
 }

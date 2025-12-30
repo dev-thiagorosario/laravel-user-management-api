@@ -7,7 +7,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\URL;
 use Carbon\CarbonInterface;
 
-class EmailConfirmationLinkGeneratorService implements LinkGeneratorServiceInterface
+class EmailConfirmationLinkGeneratorService implements EmailConfirmationLinkGeneratorServiceInterface
 {
     public function generate(int $userId, string $email, string $plainToken, CarbonInterface $expiration): string
     {

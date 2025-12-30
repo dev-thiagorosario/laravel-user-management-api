@@ -21,9 +21,15 @@ use App\Usecases\LoginUsecaseInterface;
 use App\Usecases\SendEmailConfirmationUsecase;
 use App\Usecases\SendEmailConfirmationUsecaseInterface;
 use App\Services\EmailConfirmationLinkGeneratorService;
-use App\Services\LinkGeneratorServiceInterface;
+use App\Services\EmailConfirmationHashValidatorService;
+use App\Services\EmailConfirmationHashValidatorServiceInterface;
+use App\Services\EmailConfirmationLinkGeneratorServiceInterface;
+use App\Services\TokenGuardService;
+use App\Services\TokenGuardServiceInterface;
 use App\Services\TokenGeneratorService;
 use App\Services\TokenGeneratorServiceInterface;
+use App\Services\UrlSignatureValidatorService;
+use App\Services\UrlSignatureValidatorServiceInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Usecases\ConfirmEmailUsecase;
 use App\Usecases\ConfirmEmailUsecaseInterface;
@@ -48,8 +54,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(LogoutUsecaseInterface::class, LogoutUsecase::class);
 
         $this->app->bind(EmailConfirmationTokenRepositoryInterface::class, EmailConfirmationTokenRepository::class);
-        $this->app->bind(LinkGeneratorServiceInterface::class, EmailConfirmationLinkGeneratorService::class);
+        $this->app->bind(EmailConfirmationLinkGeneratorServiceInterface::class, EmailConfirmationLinkGeneratorService::class);
         $this->app->bind(TokenGeneratorServiceInterface::class, TokenGeneratorService::class);
+        $this->app->bind(TokenGuardServiceInterface::class, TokenGuardService::class);
+        $this->app->bind(UrlSignatureValidatorServiceInterface::class, UrlSignatureValidatorService::class);
+        $this->app->bind(EmailConfirmationHashValidatorServiceInterface::class, EmailConfirmationHashValidatorService::class);
         $this->app->bind(SendEmailConfirmationUsecaseInterface::class, SendEmailConfirmationUsecase::class);
 
         $this->app->bind(ConfirmEmailUsecaseInterface::class, ConfirmEmailUsecase::class);

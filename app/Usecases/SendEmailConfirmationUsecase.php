@@ -8,7 +8,7 @@ use App\DTO\SendEmailConfirmationInputDTO;
 use App\Mail\NewUserConfirmationMail;
 use App\Repositories\EmailConfirmationTokenRepositoryInterface;
 use App\Repositories\FindUserRepositoryInterface;
-use App\Services\LinkGeneratorServiceInterface;
+use App\Services\EmailConfirmationLinkGeneratorServiceInterface;
 use App\Services\TokenGeneratorServiceInterface;
 use App\Exceptions\EmailAlreadyVerifiedException;
 use Carbon\CarbonImmutable;
@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Mail;
 class SendEmailConfirmationUsecase implements SendEmailConfirmationUsecaseInterface
 {
     public function __construct(
-        private readonly FindUserRepositoryInterface $findUserRepository,
-        private readonly LinkGeneratorServiceInterface $linkGeneratorService,
-        private readonly TokenGeneratorServiceInterface $tokenGeneratorService,
-        private readonly EmailConfirmationTokenRepositoryInterface $tokenRepository,
+        private readonly FindUserRepositoryInterface                    $findUserRepository,
+        private readonly EmailConfirmationLinkGeneratorServiceInterface $linkGeneratorService,
+        private readonly TokenGeneratorServiceInterface                 $tokenGeneratorService,
+        private readonly EmailConfirmationTokenRepositoryInterface      $tokenRepository,
     ){}
 
     public function __invoke(SendEmailConfirmationInputDTO $dto): void

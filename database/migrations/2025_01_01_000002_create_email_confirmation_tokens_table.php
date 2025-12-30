@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('email_confirmation_tokens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('token')->unique();
+            $table->string('token_hash')->unique();
             $table->timestamp('expires_at');
             $table->timestamp('used_at')->nullable();
             $table->timestamps();
