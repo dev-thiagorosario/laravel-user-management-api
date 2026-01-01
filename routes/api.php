@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\NewUserConfirmationMailController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ConfirmEmailController;
 use App\Http\Controllers\SendEmailConfirmationController;
 
@@ -17,3 +17,5 @@ Route::post('/logout', LogoutController::class)->name('logout')->middleware('aut
 Route::post('/email/confirmation', SendEmailConfirmationController::class)->name('send-email-confirmation')->middleware('auth:sanctum');
 
 Route::get('/confirm-email', ConfirmEmailController::class)->name('confirm-email')->middleware('signed');
+
+Route::post('/change-password', ChangePasswordController::class)->name('change-password')->middleware('auth:sanctum');

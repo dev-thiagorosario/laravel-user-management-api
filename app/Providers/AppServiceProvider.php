@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\CreateUserRepository;
 use App\Repositories\CreateUserRepositoryInterface;
+use App\Repositories\ChangePasswordRepository;
+use App\Repositories\ChangePasswordRepositoryInterface;
 use App\Repositories\EmailConfirmationTokenRepository;
 use App\Repositories\EmailConfirmationTokenRepositoryInterface;
 use App\Repositories\FindUserRepository;
@@ -16,6 +18,8 @@ use App\Usecases\LogoutUsecase;
 use App\Usecases\LogoutUsecaseInterface;
 use App\Usecases\CreateUserUsecase;
 use App\Usecases\CreateUserUsecaseInterface;
+use App\Usecases\ChangePasswordUsecase;
+use App\Usecases\ChangePasswordUsecaseInterface;
 use App\Usecases\LoginUsecase;
 use App\Usecases\LoginUsecaseInterface;
 use App\Usecases\SendEmailConfirmationUsecase;
@@ -24,6 +28,8 @@ use App\Services\EmailConfirmationLinkGeneratorService;
 use App\Services\EmailConfirmationHashValidatorService;
 use App\Services\EmailConfirmationHashValidatorServiceInterface;
 use App\Services\EmailConfirmationLinkGeneratorServiceInterface;
+use App\Services\PasswordVerifyService;
+use App\Services\PasswordVerifyServiceInterface;
 use App\Services\TokenGuardService;
 use App\Services\TokenGuardServiceInterface;
 use App\Services\TokenGeneratorService;
@@ -44,6 +50,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(CreateUserRepositoryInterface::class, CreateUserRepository::class);
         $this->app->bind(CreateUserUsecaseInterface::class, CreateUserUsecase::class);
+
+        $this->app->bind(ChangePasswordRepositoryInterface::class, ChangePasswordRepository::class);
+        $this->app->bind(ChangePasswordUsecaseInterface::class, ChangePasswordUsecase::class);
+        $this->app->bind(PasswordVerifyServiceInterface::class, PasswordVerifyService::class);
 
         $this->app->bind(FindUserRepositoryInterface::class, FindUserRepository::class);
 
