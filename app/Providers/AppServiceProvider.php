@@ -28,8 +28,12 @@ use App\Services\EmailConfirmationLinkGeneratorService;
 use App\Services\EmailConfirmationHashValidatorService;
 use App\Services\EmailConfirmationHashValidatorServiceInterface;
 use App\Services\EmailConfirmationLinkGeneratorServiceInterface;
+use App\Services\PasswordHasherService;
+use App\Services\PasswordHasherServiceInterface;
 use App\Services\PasswordVerifyService;
 use App\Services\PasswordVerifyServiceInterface;
+use App\Services\ResetPasswordProviderService;
+use App\Services\ResetPasswordProviderServiceInterface;
 use App\Services\TokenGuardService;
 use App\Services\TokenGuardServiceInterface;
 use App\Services\TokenGeneratorService;
@@ -39,6 +43,8 @@ use App\Services\UrlSignatureValidatorServiceInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Usecases\ConfirmEmailUsecase;
 use App\Usecases\ConfirmEmailUsecaseInterface;
+use App\Usecases\ResetPasswordUsecase;
+use App\Usecases\ResetPasswordUsecaseInterface;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -53,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ChangePasswordRepositoryInterface::class, ChangePasswordRepository::class);
         $this->app->bind(ChangePasswordUsecaseInterface::class, ChangePasswordUsecase::class);
+        $this->app->bind(PasswordHasherServiceInterface::class, PasswordHasherService::class);
         $this->app->bind(PasswordVerifyServiceInterface::class, PasswordVerifyService::class);
 
         $this->app->bind(FindUserRepositoryInterface::class, FindUserRepository::class);
@@ -72,6 +79,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SendEmailConfirmationUsecaseInterface::class, SendEmailConfirmationUsecase::class);
 
         $this->app->bind(ConfirmEmailUsecaseInterface::class, ConfirmEmailUsecase::class);
+
+        $this->app->bind(ResetPasswordUsecaseInterface::class, ResetPasswordUsecase::class);
+        $this->app->bind(ResetPasswordProviderServiceInterface::class, ResetPasswordProviderService::class);
     }
 
     /**

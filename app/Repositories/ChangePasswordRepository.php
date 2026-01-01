@@ -12,6 +12,10 @@ class ChangePasswordRepository implements ChangePasswordRepositoryInterface
     {
         User::query()
             ->whereKey($userId)
-            ->update(['password' => $newPasswordHash]);
+            ->update([
+                'password' => $newPasswordHash,
+                'must_change_password' => false,
+                'password_changed_at' => now(),
+            ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CreateUserController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ConfirmEmailController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SendEmailConfirmationController;
 
 
@@ -19,3 +20,4 @@ Route::post('/email/confirmation', SendEmailConfirmationController::class)->name
 Route::get('/confirm-email', ConfirmEmailController::class)->name('confirm-email')->middleware('signed');
 
 Route::post('/change-password', ChangePasswordController::class)->name('change-password')->middleware('auth:sanctum');
+Route::post('/reset-password', ResetPasswordController::class)->name('reset-password')->middleware('auth:sanctum');

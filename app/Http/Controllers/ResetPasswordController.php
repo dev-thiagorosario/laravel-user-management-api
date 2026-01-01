@@ -4,44 +4,35 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\DTO\ChangePasswordInputDTO;
+use App\DTO\ResetPasswordInputDTO;
 use App\Entities\ResponseJsend;
-use App\Exceptions\InvalidCurrentPasswordException;
 use App\Exceptions\UserNotFoundException;
-use App\Http\Requests\ChangePasswordRequest;
-use App\Usecases\ChangePasswordUsecaseInterface;
+use App\Usecases\ResetPasswordUsecaseInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ChangePasswordController extends Controller
+class ResetPasswordController extends Controller
 {
     public function __construct(
-        private readonly ChangePasswordUsecaseInterface $changePasswordUsecase,
+        private readonly ResetPasswordUsecaseInterface $resetPasswordUsecase,
     ){}
 
-    public function __invoke(ChangePasswordRequest $request): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         try {
-            $data = $request->validated();
+            $data = $request->all();
             $data['userId'] = (int) Auth::id();
+            $dto = ResetPasswordInputDTO::fromArray($data);
 
-            $dto = ChangePasswordInputDTO::fromArray($data);
-
-            $this->changePasswordUsecase->__invoke($dto);
+            ($this->resetPasswordUsecase)($dto);
 
             $response = new ResponseJsend(
                 status: 'success',
-                message: 'Senha alterada com sucesso!',
+                message: 'Senha resetada com sucesso!',
                 code: 200
             );
             return response()->json($response->toArray(), 200);
-        } catch (InvalidCurrentPasswordException $e) {
-            $response = new ResponseJsend(
-                status: 'error',
-                message: $e->getMessage(),
-                code: $e->getCode()
-            );
-            return response()->json($response->toArray(), 400);
         } catch (UserNotFoundException $e) {
             $response = new ResponseJsend(
                 status: 'error',
