@@ -7,6 +7,7 @@ namespace App\Enums;
 enum CodeExceptionUser: int
 {
     case USER_CREATE_ERROR = 1001;
+    case USER_UPDATE_ERROR = 1013;
     case USER_NOT_FOUND = 1002;
     case USER_LIST_ERROR = 1003;
     case INVALID_CREDENTIALS = 1004;

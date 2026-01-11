@@ -9,6 +9,7 @@ use App\Http\Controllers\ConfirmEmailController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SendEmailConfirmationController;
 use App\Http\Controllers\ListUserController;
+use App\Http\Controllers\UpdateUserController;
 
 
 Route::post('/register', CreateUserController::class)->name('register');
@@ -24,3 +25,4 @@ Route::post('/change-password', ChangePasswordController::class)->name('change-p
 Route::post('/reset-password', ResetPasswordController::class)->name('reset-password')->middleware('auth:sanctum');
 
 Route::get('/list-users', ListUserController::class)->name('list-users')->middleware('auth:sanctum');
+Route::put('/update-user', UpdateUserController::class)->name('update-user')->middleware('auth:sanctum');

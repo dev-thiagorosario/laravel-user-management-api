@@ -1,0 +1,27 @@
+meta {
+  name: Edit User
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8080/api/update-user
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 12|614mXhtptQ2Hjk4ZOXdwywu7vKO8c7Ufs0DaVjltc90a7107
+}
+
+body:json {
+  {
+    "name": "Teste Dois",
+    "email": "usertest@example.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

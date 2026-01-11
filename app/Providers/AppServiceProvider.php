@@ -16,6 +16,8 @@ use App\Repositories\ListUserRepository;
 use App\Repositories\ListUserRepositoryInterface;
 use App\Repositories\LogoutRepository;
 use App\Repositories\LogoutRepositoryInterface;
+use App\Repositories\UpdateUserRepository;
+use App\Repositories\UpdateUserRepositoryInterface;
 use App\Usecases\LogoutUsecase;
 use App\Usecases\LogoutUsecaseInterface;
 use App\Usecases\CreateUserUsecase;
@@ -26,6 +28,8 @@ use App\Usecases\LoginUsecase;
 use App\Usecases\LoginUsecaseInterface;
 use App\Usecases\ListUserUsecase;
 use App\Usecases\ListUserUsecaseInterface;
+use App\Usecases\UpdateUserUsecase;
+use App\Usecases\UpdateUserUsecaseInterface;
 use App\Usecases\SendEmailConfirmationUsecase;
 use App\Usecases\SendEmailConfirmationUsecaseInterface;
 use App\Services\EmailConfirmationLinkGeneratorService;
@@ -73,6 +77,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(ListUserRepositoryInterface::class, ListUserRepository::class);
         $this->app->bind(ListUserUsecaseInterface::class, ListUserUsecase::class);
+
+        $this->app->bind(UpdateUserRepositoryInterface::class, UpdateUserRepository::class);
+        $this->app->bind(UpdateUserUsecaseInterface::class, UpdateUserUsecase::class);
 
         $this->app->bind(LogoutRepositoryInterface::class, LogoutRepository::class);
         $this->app->bind(LogoutUsecaseInterface::class, LogoutUsecase::class);
