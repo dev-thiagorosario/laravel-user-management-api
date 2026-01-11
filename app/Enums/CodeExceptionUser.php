@@ -17,4 +17,5 @@ enum CodeExceptionUser: int
     case INVALID_OR_EXPIRED_TOKEN = 1009;
     case EMAIL_ALREADY_VERIFIED = 1010;
     case INVALID_CURRENT_PASSWORD = 1011;
+    case LIST_USER_ERROR = 1012;
 }
